@@ -1,43 +1,40 @@
-#include "holberton.h"
+#include "main.h"
+#include <stdio.h>
 
 /**
- * print_number - print any integer using putchar
- * @n: integer to be printed
- */
+* print_number - prints # using _putchar function
+* @n: the integer to print
+*
+* Return: void
+*/
 
 void print_number(int n)
 {
-	int count, x, y, k;
+	int num;
+	int factor = 0;
+	int i;
+	int digit;
+	int last_digit;
 
-	x = 0;
-	y = 1000000000;
-
-	if (n == 0)
-		_putchar('0');
-	else if (n > 0)
-		n *= -1;
-	else
-	       	_putchar('-');
-	for (count = 0; count < 10; count++)
+	digit = digit_num(n);
+	if (digit == 0)
+		_putchar('0' + n);
+	else if (digit > 0)
 	{
-		if (n / y == 0 && x == 0)
+		if (n < 0)
+			_putchar('-');
+		for (i = digit - 1; i >= 1; i--)
 		{
-			y /= 10;
-			
-			continue;
+			factor = ten_to_power(i);
+			num = (n / factor) % 10;
+			if (num < 0)
+				num = -num;
+			_putchar('0' + num);
 		}
-		else if (x == 0)
-		{
-			_putchar(-(n / y) + '0');
-			x += 1;
-		}
+		if (n < 0)
+			last_digit = -(n % 10);
 		else
-		{
-			k = (-(n / y) % 10);
-			if (k < 0)
-				k *= -1;
-			_putchar(k + '0');
-		}
-		y /= 10;
+			last_digit = n % 10;
+		_putchar('0' + last_digit);
 	}
 }

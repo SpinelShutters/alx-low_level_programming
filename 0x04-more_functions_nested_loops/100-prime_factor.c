@@ -1,32 +1,32 @@
+#include "main.h"
 #include <stdio.h>
 
 /**
- * main - print largest prime factor
- * Return: 0 if succesful
+ * main - program that prints out the highest prime
+ * Return: 0
  */
 
 int main(void)
 {
-	long int i, j, lp, num = 612852475143;
-	int prime;
+	int i = 2;
+	long n = 612852475143;
 
-	for (i = 2; i < num / 2; i++)
+
+	while (i < n)
 	{
-		prime = 1;
-		if (num % i == 0)
-			lp = num / i;
-
-		for (j = 2; j < lp / 2; j++)
-			if (lp % j == 0)
+		while (n % i == 0)
+		{
+			if (n == i)
 			{
-				prime = 0;
 				break;
 			}
-		if (prime)
-		{
-			printf("%ld\n", lp);
-			break;
+			n /= i;
 		}
+		i++;
+
+
 	}
+
+	printf("%lu\n", n);
 	return (0);
-    
+}
